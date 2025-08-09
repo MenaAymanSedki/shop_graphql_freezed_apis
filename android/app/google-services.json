@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "314002569440",
+    "project_id": "menastore-916ff",
+    "storage_bucket": "menastore-916ff.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:314002569440:android:7d4845749d21f1e7cdb885",
+        "android_client_info": {
+          "package_name": "com.mandodev.valo.shop_advanced_graphql"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCj-JLrlwYA3Ft5vT8NgQsAfmaXfq6tQo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
