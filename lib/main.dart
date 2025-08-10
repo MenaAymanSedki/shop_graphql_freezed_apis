@@ -8,6 +8,7 @@ import 'package:shop_advanced_graphql/core/app/common/screens/no_network_Screen.
 import 'package:shop_advanced_graphql/core/app/connectvity_controller.dart';
 import 'package:shop_advanced_graphql/core/app/style/fonts/font_family_helper.dart';
 import 'package:shop_advanced_graphql/core/app/style/fonts/font_weight_helper.dart';
+import 'package:shop_advanced_graphql/core/routes/app_routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -59,33 +60,8 @@ class MyApp extends StatelessWidget {
                   ),
                 );
               },
-              home: Scaffold(
-                appBar: AppBar(
-                  title: const Text('Mena Store app'),
-                ),
-                body: Center(
-                  child: Column(
-                    children: [
-                       Text(
-                        'old font',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontFamily: FontFamilyHelper.poppinsEnglish,
-                          fontWeight: FontWeightHelper.bold,
-                        ),
-                      ),
-                       Text(
-                        'مينا ايمن ',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontFamily: FontFamilyHelper.cairoArabic,
-                          fontWeight: FontWeightHelper.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              initialRoute: AppRoutes.testOne,
+              onGenerateRoute: AppRoutes.onGenerateRoute,
             ),
           );
         } else {
