@@ -1,9 +1,14 @@
 import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_advanced_graphql/core/app/common/screens/no_network_Screen.dart';
 import 'package:shop_advanced_graphql/core/app/connectvity_controller.dart';
+import 'package:shop_advanced_graphql/core/app/style/fonts/font_family_helper.dart';
+import 'package:shop_advanced_graphql/core/app/style/fonts/font_weight_helper.dart';
+import 'package:shop_advanced_graphql/core/routes/app_routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,8 +25,9 @@ void main() async {
 
   // ignore: lines_longer_than_80_chars
   await SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp],).then((_) {
-    runApp(const MyApp());
+    [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp],
+  ).then((_) {
+    runApp(MyApp());
   });
 }
 
@@ -35,28 +41,31 @@ class MyApp extends StatelessWidget {
       valueListenable: ConnectvityController.instance.isConnected,
       builder: (_, value, __) {
         if (value) {
-          return MaterialApp(
-            title: 'Flutter Demo',
-            theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-              useMaterial3: true,
-            ),
-            builder: (context, widget) {
-              return Scaffold(
-                body: Builder(builder: (context){
-                   ConnectvityController.instance.init();
-                   return widget!; 
-                },
-              ),);
-            },
-            home: Scaffold(
-              appBar: AppBar(
-                title: const Text('Mena Store app'),
+          return ScreenUtilInit(
+            designSize: Size(375, 812),
+            minTextAdapt: true,
+            child: MaterialApp(
+              title: 'Flutter Demo',
+              theme: ThemeData(
+                colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+                useMaterial3: true,
               ),
+              builder: (context, widget) {
+                return Scaffold(
+                  body: Builder(
+                    builder: (context) {
+                      ConnectvityController.instance.init();
+                      return widget!;
+                    },
+                  ),
+                );
+              },
+              initialRoute: AppRoutes.testOne,
+              onGenerateRoute: AppRoutes.onGenerateRoute,
             ),
           );
-        }else{
-         return MaterialApp(
+        } else {
+          return MaterialApp(
             title: 'Flutter Demo',
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -64,7 +73,6 @@ class MyApp extends StatelessWidget {
             ),
             home: const NoNetworkScreen(),
           );
-           
         }
       },
     );
