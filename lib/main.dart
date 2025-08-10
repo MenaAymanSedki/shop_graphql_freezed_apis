@@ -1,7 +1,28 @@
+import 'dart:io';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:shop_advanced_graphql/core/app/common/screens/no_network_Screen.dart';
+import 'package:shop_advanced_graphql/core/app/connectvity_controller.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Platform.isAndroid
+      ? await Firebase.initializeApp(
+          options: const FirebaseOptions(
+            apiKey: 'AIzaSyDCj-JLrlwYA3Ft5vT8NgQsAfmaXfq6tQo',
+            appId: '1:314002569440:android:7d4845749d21f1e7cdb885',
+            messagingSenderId: '314002569440',
+            projectId: 'menastore-916ff',
+          ),
+        )
+      : await Firebase.initializeApp();
+
+  // ignore: lines_longer_than_80_chars
+  await SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp],).then((_) {
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -10,28 +31,42 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    return ValueListenableBuilder(
+      valueListenable: ConnectvityController.instance.isConnected,
+      builder: (_, value, __) {
+        if (value) {
+          return MaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+              useMaterial3: true,
+            ),
+            builder: (context, widget) {
+              return Scaffold(
+                body: Builder(builder: (context){
+                   ConnectvityController.instance.init();
+                   return widget!; 
+                },
+              ),);
+            },
+            home: Scaffold(
+              appBar: AppBar(
+                title: const Text('Mena Store app'),
+              ),
+            ),
+          );
+        }else{
+         return MaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+              useMaterial3: true,
+            ),
+            home: const NoNetworkScreen(),
+          );
+           
+        }
+      },
     );
   }
 }
