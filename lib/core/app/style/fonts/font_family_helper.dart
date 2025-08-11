@@ -4,5 +4,14 @@ class FontFamilyHelper {
   static const String cairoArabic = 'Cairo';
   static const String poppinsEnglish = 'Poppins';
 
-  // TODO: switch Arabic font and English
+  // TODO: shardPrefrences
+
+  static String getLocalozedFontFamily(){
+    final currentLanguage = 'ar';
+    if(currentLanguage=='ar'){
+      return cairoArabic;
+    }else{
+      return poppinsEnglish;
+    }
+  }
 }

@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  animate_do: ^4.2.0
   connectivity_plus: ^5.0.2
   cupertino_icons: ^1.0.8
   firebase_core: ^4.0.0
@@ -74,9 +75,9 @@ flutter:
     - assets/svg/
     - lang/en.json
     - lang/ar.json
- 
+
   fonts:
-  # Arabic Fonts
+    # Arabic Fonts
     - family: Cairo
       fonts:
         - asset: assets/fonts/arabic/cairo/Cairo-Bold.ttf
@@ -85,7 +86,7 @@ flutter:
           weight: 500
         - asset: assets/fonts/arabic/cairo/Cairo-Regular.ttf
           weight: 400
-       # English Font
+      # English Font
     - family: Poppins
       fonts:
         - asset: assets/fonts/english/poppins/Poppins-Bold.ttf
@@ -94,7 +95,5 @@ flutter:
           weight: 500
         - asset: assets/fonts/english/poppins/Poppins-Regular.ttf
           weight: 400
-        
-  #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
