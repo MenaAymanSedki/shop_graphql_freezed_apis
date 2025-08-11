@@ -21,7 +21,7 @@ ThemeData themeDark() {
 
 ThemeData themeLight() {
   return ThemeData(
-    extensions: <ThemeExtension<dynamic>>[MyColors.light,MyAssets.light],
+    extensions: <ThemeExtension<dynamic>>[MyColors.light, MyAssets.light],
     useMaterial3: true,
     textTheme: TextTheme(
       displaySmall: TextStyle(
