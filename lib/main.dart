@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/services.dart';
+import 'package:shop_advanced_graphql/core/app/bloc_observer.dart';
 import 'package:shop_advanced_graphql/mena_store_app.dart';
 
 void main() async {
@@ -16,6 +18,8 @@ void main() async {
           ),
         )
       : await Firebase.initializeApp();
+
+      Bloc.observer = AppBlocObserver();
 
   // ignore: lines_longer_than_80_chars
   await SystemChrome.setPreferredOrientations(

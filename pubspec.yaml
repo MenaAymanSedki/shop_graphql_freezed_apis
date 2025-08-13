@@ -34,17 +34,22 @@ dependencies:
   firebase_core: ^4.0.0
   flutter:
     sdk: flutter
+  flutter_bloc: ^9.1.1
   flutter_launcher_icons: ^0.14.4
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: ^2.0.0
   flutter_screenutil: ^5.9.3
+  freezed_annotation: ^3.1.0
+  shared_preferences: ^2.5.3
   very_good_analysis: ^2.0.0
 
 dev_dependencies:
+  build_runner: ^2.4.13
   flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
+  freezed: ^3.0.0-0.0.dev
 flutter_icons:
   android: true
   ios: true
